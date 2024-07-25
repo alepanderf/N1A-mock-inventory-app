@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom'
 import { selectIsLoggedIn } from '../../../redux/features/auth/auth.slice'
 import { getProduct } from '../../../redux/features/product/product.slice'
 import Card from '../../card/card'
+import { SpinnerImage } from '../../loader/loader'
 
 const ProductDetail = () => {
     useRedirectLoggedOutUser("/login")
@@ -19,19 +20,29 @@ const ProductDetail = () => {
     useEffect(() => {
         if (isLoggedIn === true) {
             dispatch(getProduct(id))
-            console.log(product)
         }
 
         if(isError) {
             console.log(message)
         }
-    }, [isLoggedIn, isError, message, dispatch, product])
+    }, [isLoggedIn, isError, message, dispatch])
 
     return (
         <div className="product-detail">
             <h3 className="--mt">Product Details</h3>
             <Card cardClass="card">
-
+                {isLoading && <SpinnerImage/>}
+                {product && (
+                    <div className="detail">
+                        <Card cardClass="group">
+                            {product?.image ? (
+                                <im src={product.image.filePath} alt={product.image.fileName} />
+                            ) : (
+                                <p>No image set for this product</p>
+                            )}
+                        </Card>
+                    </div>
+                )}
             </Card>
         </div>
     )
