@@ -18,7 +18,7 @@ const ProductDetail = () => {
 
     useEffect(() => {
         if (isLoggedIn === true) {
-            dispatch(getProduct())
+            dispatch(getProduct(id))
             console.log(product)
         }
 
