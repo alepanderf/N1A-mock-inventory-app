@@ -11,7 +11,7 @@ const ProductDetail = () => {
     useRedirectLoggedOutUser("/login")
     const dispatch = useDispatch()
 
-    const {id} = useParams()
+    const { id } = useParams()
 
     const isLoggedIn = useSelector(selectIsLoggedIn)
     const {product, isLoading, isError, message} = useSelector((state) => state.product)
