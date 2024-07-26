@@ -52,7 +52,7 @@ const ProductDetail = () => {
                         <h4>Product Availability: {stockStatus(product.quantity)}</h4>
                         <hr />
                         <h4>
-                            <span className="badge">Name: </span> & nbsp {product.name}
+                            <span className="badge">Name: </span> &nbsp; {product.name}
                         </h4>
                             <p>
                                 <b>&rarr SKU :</b> {product.sku}
