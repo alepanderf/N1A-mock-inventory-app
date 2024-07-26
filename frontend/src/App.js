@@ -18,6 +18,7 @@ import { AddProduct } from './pages/addProduct/add.product';
 import ProductDetail from './components/product/productDetail/product.detail';
 import EditProduct from './pages/editProduct/edit.product';
 import Profile from './pages/profile/profile';
+import EditProfile from './pages/profile/edit.profile';
 
 axios.defaults.withCredentials = true
 
@@ -74,6 +75,13 @@ function App() {
           <Sidebar>
             <Layout>
               <Profile/>
+            </Layout>
+          </Sidebar>
+        }/>
+        <Route path="/edit-profile" element={
+          <Sidebar>
+            <Layout>
+              <EditProfile/>
             </Layout>
           </Sidebar>
         }/>
