@@ -23,16 +23,22 @@ const deleteProduct = async (id) => {
 }
 
 //Get a product
-const getProduct = async(id) => {
-    const response = await axios.get(API_URL +"/"+ id)
+const getProduct = async(id, formData) => {
+    const response = await axios.get(`${API_URL}${id}`, formData)
     return response.data
+}
+
+//Update a product
+const updateProduct = async(id) => {
+    const response = await axios.patch(API_URL )
 }
 
 const productService = {
     createProduct,
     getProducts,
     deleteProduct,
-    getProduct
+    getProduct,
+    updateProduct,
 }
 
 export default productService
