@@ -4,10 +4,20 @@ import { useSelector } from 'react-redux'
 import { selectUser } from '../../redux/features/auth/auth.slice'
 import Loader from '../../components/loader/loader'
 import Card from '../../components/card/card'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 const EditProfile = () => {
     const [isLoading, setIsLoading] = useState(false)
     const user = useSelector(selectUser)
+    const {email} = user 
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if (!email) {
+            navigate("/profile")
+        }
+    }, [email, navigate])
     
     const initialState = {
         name: user?.name,
@@ -29,8 +39,34 @@ const EditProfile = () => {
         setProfileImage(e.target.files[0])
     }
 
-    const saveProfile = (e) => {
+    const saveProfile = async(e) => {
         e.preventDefault()
+        setIsLoading(true)
+        try {
+            let imageURL
+            if (profileImage && 
+                (
+                    profileImage.type === "image/jpeg" ||
+                    profileImage.type === "image/jpg" ||
+                    profileImage.type === "image/png"
+                ))
+                {
+                    const image = new FormData()
+                    image.append("file", profileImage)
+                    image.append("cloud_name", "dbcugeiur")
+                    image.append("upload_preset", "xe3yhbyl")
+
+                    //first save image to cloudinary
+                    const response = await fetch("https://api.cloudinary.com/v1_1/dbcugeiur/image/upload", {method: "post", body: image})
+                    const imgData = await response.json()
+                    imageURL = imgData.url.toString()
+                    console.log(imgData)
+                }
+        } catch (error) {
+            console.log(error)
+            setIsLoading(false)
+            toast.error(error.message)
+        }
     }
 
     return(
@@ -41,7 +77,7 @@ const EditProfile = () => {
                     <span className="profile-photo">
                         <img src={user?.photo} alt="profilepic" />
                     </span>
-                    <form className="--form-control" onSubmit={saveProfile}>
+                    <form className="--form-control --m" onSubmit={saveProfile}>
                         <span className="profile-data">
                             <p>
                                 <label>Name: </label>
