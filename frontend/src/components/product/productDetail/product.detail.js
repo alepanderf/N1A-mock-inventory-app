@@ -55,19 +55,19 @@ const ProductDetail = () => {
                             <span className="badge">Name: </span> &nbsp; {product.name}
                         </h4>
                             <p>
-                                <b>&rarr SKU :</b> {product.sku}
+                                <b>&rarr; SKU :</b> {product.sku}
                             </p>
                             <p>
-                                <b>&rarr Category :</b> {product.category}
+                                <b>&rarr; Category :</b> {product.category}
                             </p>
                             <p>
-                                <b>&rarr Price :</b> {product.price}
+                                <b>&rarr; Price :</b> {product.price}
                             </p>
                             <p>
-                                <b>&rarr Quantity in Stock :</b> {"$"}{product.quantity}
+                                <b>&rarr; Quantity in Stock :</b> {"$"}{product.quantity}
                             </p>
                             <p>
-                                <b>&rarr Total Value in Stock :</b> {"$"}{product.price * product.sku}
+                                <b>&rarr; Total Value in Stock :</b> {"$"}{product.price * product.sku}
                             </p>
                             <hr />
                             <div dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(product.description)}}></div>
