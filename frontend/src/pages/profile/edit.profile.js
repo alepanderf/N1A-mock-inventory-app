@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './profile.scss'
 import { useSelector } from 'react-redux'
 import { selectUser } from '../../redux/features/auth/auth.slice'
