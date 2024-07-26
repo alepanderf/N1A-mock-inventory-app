@@ -16,6 +16,7 @@ import { getLoginstatus } from './services/auth.service';
 import { SET_LOGIN } from './redux/features/auth/auth.slice';
 import { AddProduct } from './pages/addProduct/add.product';
 import ProductDetail from './components/product/productDetail/product.detail';
+import EditProduct from './pages/editProduct/edit.product';
 
 axios.defaults.withCredentials = true
 
@@ -58,6 +59,13 @@ function App() {
           <Sidebar>
             <Layout>
               <ProductDetail/>
+            </Layout>
+          </Sidebar>
+        }/>
+        <Route path="/edit-product/:id" element={
+          <Sidebar>
+            <Layout>
+              <EditProduct/>
             </Layout>
           </Sidebar>
         }/>
