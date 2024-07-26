@@ -14,15 +14,14 @@ const initialState = {
 
 
 export const AddProduct = () => {
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
     const [product, setProduct] = useState(initialState)
     const [productImage, setProductImage] = useState("")
     const [imagePreview, setImagePreview] = useState(null)
     const [description, setDescription] = useState("")
     
     const isLoading = useSelector(selectIsLoading)
-
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
 
     const {name, category, price, quantity} = product
 
