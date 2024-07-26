@@ -3,14 +3,13 @@ import './profile.scss'
 import { useSelector } from 'react-redux'
 import { selectUser } from '../../redux/features/auth/auth.slice'
 import Loader from '../../components/loader/loader'
-import { Link } from 'react-router-dom'
 import Card from '../../components/card/card'
 
 const EditProfile = () => {
     const [isLoading, setIsLoading] = useState(false)
     const user = useSelector(selectUser)
     
-    const inititalState = {
+    const initialState = {
         name: user?.name,
         email: user?.email,
         phone: user?.phone,
