@@ -6,6 +6,7 @@ import Loader from '../../components/loader/loader'
 import Card from '../../components/card/card'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { updateUser } from '../../services/auth.service'
 
 const EditProfile = () => {
     const [isLoading, setIsLoading] = useState(false)
@@ -60,7 +61,19 @@ const EditProfile = () => {
                     const response = await fetch("https://api.cloudinary.com/v1_1/dbcugeiur/image/upload", {method: "post", body: image})
                     const imgData = await response.json()
                     const imageURL = imgData.url.toString()
-                    console.log(imgData)
+
+                    //save profile
+                    const formData = {
+                        name: profile.name,
+                        phone: profile.phone,
+                        bio: profile.bio,
+                        photo: profileImage ? imageURL : profile.photo
+                    }
+
+                    const data = await updateUser(formData)
+                    console.log(data)
+                    toast.success("User updated")
+                    navigate("/profile")
                 }
         } catch (error) {
             console.log(error)
