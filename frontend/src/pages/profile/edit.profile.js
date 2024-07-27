@@ -61,6 +61,7 @@ const EditProfile = () => {
                     const response = await fetch("https://api.cloudinary.com/v1_1/dbcugeiur/image/upload", {method: "post", body: image})
                     const imgData = await response.json()
                     const imageURL = imgData.url.toString()
+                }
 
                     //save profile
                     const formData = {
@@ -74,7 +75,7 @@ const EditProfile = () => {
                     console.log(data)
                     toast.success("User updated")
                     navigate("/profile")
-                }
+                
         } catch (error) {
             console.log(error)
             setIsLoading(false)
